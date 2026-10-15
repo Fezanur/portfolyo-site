@@ -1,9 +1,8 @@
 /* Home header background: transparent until the hero's subtitle
    ("Kullanıcı deneyimi…") reaches the header, then it starts at a low
    opacity and fills up over the next FILL_DISTANCE px of scrolling.
-   Phones: the heading sits right under the header, so the background
-   turns (almost) solid as soon as the page moves — text never shows
-   through it. Writes --header-fill (0 … 1) on <header>; css/hero.css. */
+   Phones: always solid (it also fills the iPhone status-bar strip and
+   the heading right under it never shows through). Writes --header-fill (0 … 1) on <header>; css/hero.css. */
 const START_OPACITY = 0.35;
 const FILL_DISTANCE = 320;
 const phone = window.matchMedia("(max-width: 860px)");
@@ -22,8 +21,8 @@ export function initHeaderFill() {
   // cheap enough to run on every scroll event (one custom property)
   const update = () => {
     if (phone.matches) {
-      const fill = window.scrollY <= 2 ? 0 : 0.9 + 0.1 * Math.min(1, window.scrollY / 80);
-      header.style.setProperty("--header-fill", fill.toFixed(3));
+      // phones: always solid, so the status-bar strip is filled too
+      header.style.setProperty("--header-fill", "1");
       return;
     }
     const past = window.scrollY - start;

@@ -76,23 +76,33 @@ html.is-intro-lock body {
 /* ---------- 1. Opening film ---------- */
 .intro__room {
   position: fixed;
-  inset: 0;
-  /* iOS Safari's floating toolbar sits over the page: size the overlay to
-     the *large* viewport so it also covers the strip under the toolbar
-     (otherwise the home page peeks through at the bottom) */
+  /* Bleed well past every edge so the paper colour covers the whole
+     screen on any device: under iOS Safari's status bar and floating
+     toolbars, notches, rounded corners, overscroll bounce. The overlay
+     grows by the same amount above and below, so the film stays centred. */
+  left: -10vw;
+  right: -10vw;
+  top: -25vh;
   bottom: auto;
-  height: 100vh;
-  height: 100lvh;
+  height: calc(100vh + 50vh);
+  height: calc(100lvh + 50vh);
   z-index: 200;
   overflow: hidden;
   background: #faf8f3;
 }
 
-/* Opening film fills the screen (its paper colour matches the page) */
+/* Opening film fills the visible screen (its paper colour matches the
+   page); centred in the oversized overlay */
 .intro__video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
   display: block;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  max-width: none;
+  height: 100vh;
+  height: 100lvh;
+  translate: -50% -50%;
   object-fit: cover;
 }
 

@@ -19,6 +19,8 @@
 /* clip (not hidden): hidden would turn <body> into a scroll container
    and break position: sticky (header, home intro) */
 html {
+  /* overscroll / safe-area strips take the page colour, not white */
+  background: #fbfaf6;
   overflow-x: hidden;
   overflow-x: clip;
   overflow-y: visible;
