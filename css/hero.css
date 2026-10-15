@@ -125,7 +125,7 @@ html.is-intro-lock body {
 .landing {
   position: relative;
   z-index: 1;
-  padding-top: var(--header-h);
+  padding-top: calc(var(--header-h) + env(safe-area-inset-top, 0px));
   transform-origin: 50% 40%;
 }
 

@@ -2,6 +2,9 @@ header {
   position: sticky;
   top: 0;
   z-index: 100;
+  /* iOS (viewport-fit=cover): the header reaches up under the status bar
+     and its background covers that strip, so the page never shows above it */
+  padding-top: env(safe-area-inset-top, 0px);
   background: var(--color-bg);
   box-shadow: 0 2px 2px rgba(27, 28, 29, 0.04);
 }
