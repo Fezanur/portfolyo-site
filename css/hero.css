@@ -77,6 +77,12 @@ html.is-intro-lock body {
 .intro__room {
   position: fixed;
   inset: 0;
+  /* iOS Safari's floating toolbar sits over the page: size the overlay to
+     the *large* viewport so it also covers the strip under the toolbar
+     (otherwise the home page peeks through at the bottom) */
+  bottom: auto;
+  height: 100vh;
+  height: 100lvh;
   z-index: 200;
   overflow: hidden;
   background: #faf8f3;
