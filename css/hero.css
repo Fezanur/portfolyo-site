@@ -1,0 +1,818 @@
+/* ==========================================================
+   Home page shell (Figma 391:3256, 1440px frame)
+   ========================================================== */
+body.home {
+  --color-bg: #fbfaf6;
+  --home-ink: #333330;
+  --home-muted: #605a51;
+  --home-faint: #9c968c;
+  --home-line: rgba(51, 51, 48, 0.5);
+  --header-h: 64px;
+  --sticker-terracotta: #df7a50;
+  --sticker-pink: #eab3c7;
+  --sticker-mustard: #ecbf55;
+  --sticker-sage: #95b083;
+}
+
+/* Paper grain over the whole page */
+body.home::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0.09;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+}
+
+/* Home content is 1200px wide at 1440 (container padding sits outside it) */
+body.home main .container {
+  max-width: calc(1200px + 2 * var(--container-padding));
+}
+
+/* Section rhythm comes from the design, not the global section padding */
+body.home main > section {
+  padding-block: 0;
+}
+
+/* The header floats over the page; js/intro.js fades it in when the
+   intro zoom lands on the landing scene */
+/* Transparent over the hero; once the "Kullanıcı deneyimi…" line scrolls
+   under it, the hero's background colour fades in, faint at first and
+   filling as the page scrolls on (--header-fill 0 → 1, js/header-fill.js) */
+body.home header {
+  position: fixed;
+  left: 0;
+  right: 0;
+  --header-fill: 0;
+  background: rgb(251 250 246 / var(--header-fill));
+  box-shadow: 0 2px 2px rgb(27 28 29 / calc(var(--header-fill) * 0.04));
+  -webkit-backdrop-filter: blur(calc(var(--header-fill) * 8px));
+  backdrop-filter: blur(calc(var(--header-fill) * 8px));
+}
+
+body.home.is-intro header {
+  visibility: hidden;
+  opacity: 0;
+}
+
+/* No scrolling while the loading scene plays */
+html.is-intro-lock,
+html.is-intro-lock body {
+  overflow: hidden;
+}
+
+/* ==========================================================
+   Intro: full-screen loading scene over the landing
+   ========================================================== */
+.intro {
+  position: relative;
+}
+
+.intro__frame {
+  position: relative;
+}
+
+/* ---------- 1. Opening film ---------- */
+.intro__room {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  overflow: hidden;
+  background: #faf8f3;
+}
+
+/* Opening film fills the screen (its paper colour matches the page) */
+.intro__video {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Portrait screens (phones): cropping a 16:9 film to fill a tall screen
+   would cut away the cat and the room. Instead the film runs full width,
+   centred both ways on the matching paper colour (the desk stays in the
+   middle, as in the film), enlarged just enough to trim the empty 3%
+   margins so the cat bed on the left still shows */
+@media (max-aspect-ratio: 1/1) {
+  .intro__video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 106.4vw;
+    max-width: none; /* reset.css caps media at 100% */
+    height: auto;
+    aspect-ratio: 16 / 9;
+    translate: -50% -50%;
+    object-fit: cover;
+  }
+}
+
+/* Animated line-art parts (see tools/build-hero-art.py); transform-origin
+   is set per part in drawing units */
+.part {
+  transform-box: view-box;
+}
+
+/* ---------- 2. Landing ---------- */
+.landing {
+  position: relative;
+  z-index: 1;
+  padding-top: var(--header-h);
+  transform-origin: 50% 40%;
+}
+
+/* 1440 × 620 design frame under the 64px header; desktop pulls it 100px
+   up so the film and the text sit higher */
+.landing__stage {
+  position: relative;
+  max-width: 1440px;
+  margin: -100px auto 0;
+  aspect-ratio: 1440 / 620;
+}
+
+/* Text block centred vertically on the girl + cat film (same top and
+   height as .hero-video: y 133 … 577 of the 620 frame) */
+.landing__text {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 21.45%;
+  height: 71.61%;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* "Merhaba, Ben Feza" on one line */
+.hero__heading {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  column-gap: 0.25em;
+  font-size: 52px; /* sets the em for the gap; children are 52px too */
+  white-space: nowrap;
+}
+
+.hero__heading .hero__title {
+  margin-top: 0;
+}
+
+/* Desktop: "Merhaba," and "Ben Feza" both 52px semibold */
+.hero__greeting {
+  font-size: 52px;
+  font-weight: 600;
+  line-height: 1.15;
+  color: #000;
+}
+
+.hero__title {
+  margin-top: clamp(2px, 0.4vw, 6px);
+  font-size: 52px;
+  line-height: 1.15;
+  font-weight: 600;
+  color: #000;
+  white-space: nowrap;
+}
+
+/* Screen-reader copy of the lettered text */
+.hero-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.split-word {
+  display: inline-block;
+  white-space: nowrap;
+}
+
+/* Letters pop up one by one with a little overshoot once the landing is
+   revealed (js/intro.js adds .is-revealed) */
+.landing .letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(0.5em) rotate(-7deg) scale(0.7);
+  transform-origin: 50% 75%;
+}
+
+.landing.is-revealed .letter {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.7s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1);
+  transition-delay: calc(var(--letter-i) * 20ms);
+}
+
+.hero__title-accent {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-base);
+  font-style: italic;
+  font-weight: 600;
+  color: var(--color-tertiary-600);
+}
+
+/* Hand-drawn underline that draws itself under "Feza" */
+.hero__scribble {
+  position: absolute;
+  left: -2%;
+  bottom: -0.02em;
+  width: 104%;
+  height: 0.22em;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.hero__scribble path {
+  fill: none;
+  stroke: var(--sticker-terracotta);
+  stroke-width: 5;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+
+.landing.is-revealed .hero__scribble path {
+  stroke-dashoffset: 0;
+  transition: stroke-dashoffset 0.8s cubic-bezier(0.65, 0, 0.35, 1) 0.75s;
+}
+
+/* Desktop: subtitles match the heading (52px semibold) and wrap inside
+   the left column, clear of the film */
+.hero__subtitle {
+  max-width: min(560px, 40vw);
+  margin-top: clamp(8px, 1.1vw, 16px);
+  font-size: 52px;
+  font-weight: 600;
+  line-height: 1.15;
+  color: #000;
+}
+
+/* "Merhaba, Ben Feza" and the subtitle read as one block: no extra gap,
+   so every line is the same 1.15 line-height apart */
+.hero__heading + .hero__subtitle {
+  margin-top: 0;
+}
+
+/* "Portfolyoma hoşgeldin :)" — 24px */
+.hero__subtitle + .hero__subtitle {
+  max-width: none;
+  font-size: 24px;
+  margin-top: clamp(14px, 1.7vw, 24px);
+}
+
+/* Girl + cat film (16:9, 790 px wide at x 630, y 133 in the 1440 × 620
+   frame: she sits where the drawing was, the cat walks in from its left
+   edge, which fades into the page) */
+.hero-video {
+  position: absolute;
+  left: 43.75%;
+  top: 21.45%;
+  width: 54.86%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 9%);
+  mask-image: linear-gradient(to right, transparent, #000 9%);
+}
+
+/* Floor line and girl (275 × 349 drawing, 316 px wide at x 1040, y 155)
+   placed in the 1440 × 620 frame */
+.landing__art {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.landing__canvas {
+  position: absolute;
+  inset: 0;
+  container-type: inline-size;
+}
+
+.home-art__floor,
+.home-art__girl {
+  position: absolute;
+  overflow: visible;
+}
+
+.home-art__floor {
+  left: 0;
+  top: 16.29%;
+  width: 100%;
+  height: 73.71%;
+}
+
+.home-art__girl {
+  left: 72.22%;
+  top: 25%;
+  width: 21.94%;
+  height: 64.68%;
+  transform-origin: 50% 96%;
+  animation: girl-breathe 4.6s ease-in-out infinite;
+}
+
+/* ---------- The girl at work ---------- */
+/* Typing: js/intro.js taps the hands one after the other */
+.home-art__girl .part--hand-l,
+.home-art__girl .part--hand-r {
+  transition: transform 80ms ease-out;
+}
+
+.home-art__girl .part--hand-l.is-tap {
+  transform: translate(0.4px, 1.3px);
+}
+
+.home-art__girl .part--hand-r.is-tap {
+  transform: translateY(1.2px) rotate(-1.2deg);
+}
+
+.home-art__girl .part--eye-l,
+.home-art__girl .part--eye-r {
+  animation: blink 5.3s ease-in-out 0.8s infinite;
+}
+
+/* Between typing bursts she smiles: the mouth widens, the eyes squint */
+.girl-mouth,
+.girl-smile,
+.girl-dimple {
+  transition: opacity 0.3s ease;
+}
+
+.girl-smile,
+.girl-dimple,
+.home-art__girl.is-smiling .girl-mouth {
+  opacity: 0;
+}
+
+.home-art__girl.is-smiling .girl-smile,
+.home-art__girl.is-smiling .girl-dimple {
+  opacity: 1;
+}
+
+/* `scale` composes with the blink's `transform` (pivot = the eye) */
+.home-art__girl .part--eye-l,
+.home-art__girl .part--eye-r {
+  transition: scale 0.3s ease;
+}
+
+.home-art__girl.is-smiling .part--eye-l,
+.home-art__girl.is-smiling .part--eye-r {
+  scale: 1 0.45;
+}
+
+/* "UX / UI / Experience" pop out of the laptop one after another */
+.laptop-words {
+  position: absolute;
+  inset: 0;
+}
+
+.laptop-word {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  font-family: var(--font-base);
+  font-size: 2.4cqw;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1;
+  letter-spacing: -0.01em;
+  white-space: nowrap;
+  opacity: 0;
+  transform-origin: 80% 100%;
+  animation: word-pop 7.5s cubic-bezier(0.34, 1.4, 0.64, 1) infinite;
+  animation-delay: calc(var(--i) * 2.5s);
+  animation-play-state: paused;
+}
+
+.laptop-word:nth-child(1) {
+  color: var(--sticker-terracotta);
+}
+
+.laptop-word:nth-child(2) {
+  font-size: 2.1cqw;
+  color: var(--color-tertiary-500);
+}
+
+.laptop-word:nth-child(3) {
+  color: #c25a88;
+}
+
+/* they start once the landing is on screen */
+.landing.is-revealed .laptop-word {
+  animation-play-state: running;
+}
+
+/* ---------- The cat: walks in from the left, sits beside her ---------- */
+/* Box = the walking drawing (334 × 224) at 0.62 scale, paws on y 545 */
+.hero-cat {
+  position: absolute;
+  left: 59.1%;
+  top: 71%;
+  width: 14.4%;
+  aspect-ratio: 334 / 224;
+}
+
+.hero-cat__mover {
+  position: absolute;
+  inset: 0;
+}
+
+.hero-cat__walk,
+.hero-cat__sit {
+  position: absolute;
+  overflow: visible;
+  transition:
+    opacity 0.25s ease,
+    transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hero-cat__walk {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+
+/* sitting pose, paws on the same line, head where the walker's head was */
+.hero-cat__sit {
+  left: 34%;
+  top: -2.4%;
+  width: 56%;
+  height: auto;
+  opacity: 0;
+  transform-origin: 50% 100%;
+  transform: scale(0.92, 0.84);
+}
+
+.hero-cat__body {
+  fill: var(--color-bg);
+}
+
+.hero-cat.is-walking .hero-cat__walk {
+  opacity: 1;
+  animation: cat-bob 0.5s ease-in-out infinite;
+}
+
+.hero-cat.is-sitting .hero-cat__sit {
+  opacity: 1;
+  transform: none;
+}
+
+.hero-cat__walk .part {
+  animation: leg-swing 1s ease-in-out infinite;
+  animation-play-state: paused;
+}
+
+.hero-cat.is-walking .hero-cat__walk .part {
+  animation-play-state: running;
+}
+
+/* diagonal gait: hind-back with fore-front, then the other pair */
+.hero-cat__walk .part--leg-hf,
+.hero-cat__walk .part--leg-fb {
+  animation-delay: -0.5s;
+}
+
+/* Colour stickers float around the drawing. The wrapper takes the
+   intro's pop-in (GSAP), the inner span floats and keeps its tilt. */
+.hero-stickers {
+  position: absolute;
+  inset: 0;
+}
+
+.sticker {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--w);
+  display: block;
+}
+
+.sticker__float {
+  display: block;
+  transform: rotate(var(--tilt, 0deg));
+  animation: sticker-float var(--dur, 8s) ease-in-out var(--delay, 0s) infinite;
+  will-change: translate, rotate;
+}
+
+.sticker img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Hearts rise over the cat once it has sat down, then a quiet pause */
+.cat-hearts {
+  position: absolute;
+  left: 62%;
+  top: -26%;
+  width: 22%;
+  aspect-ratio: 1;
+}
+
+.cat-heart {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 46%;
+  color: var(--sticker-terracotta);
+  opacity: 0;
+  animation: heart-rise 6.6s ease-out 1.2s infinite;
+  animation-play-state: paused;
+}
+
+.hero-cat.is-sitting .cat-heart {
+  animation-play-state: running;
+}
+
+.cat-heart:nth-child(2) {
+  left: 42%;
+  width: 34%;
+  color: var(--sticker-pink);
+  animation-delay: 1.75s;
+}
+
+.cat-heart:nth-child(3) {
+  left: 18%;
+  width: 28%;
+  animation-delay: 2.3s;
+}
+
+.cat-heart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ==========================================================
+   Keyframes
+   ========================================================== */
+@keyframes plant-sway {
+  0%,
+  100% {
+    transform: rotate(-0.55deg);
+  }
+
+  50% {
+    transform: rotate(0.65deg);
+  }
+}
+
+@keyframes leaf-flutter {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+
+  30% {
+    transform: rotate(1.8deg);
+  }
+
+  65% {
+    transform: rotate(-1.3deg);
+  }
+}
+
+@keyframes sticker-float {
+  0%,
+  100% {
+    translate: 0 0;
+    rotate: 0deg;
+  }
+
+  33% {
+    translate: 4px -9px;
+    rotate: 4deg;
+  }
+
+  66% {
+    translate: -3px -4px;
+    rotate: -3deg;
+  }
+}
+
+@keyframes girl-breathe {
+  0%,
+  100% {
+    scale: 1 1;
+  }
+
+  50% {
+    scale: 1.004 1.008;
+  }
+}
+
+@keyframes word-pop {
+  0% {
+    opacity: 0;
+    transform: translate(30%, 40%) scale(0.3) rotate(-14deg);
+  }
+
+  7% {
+    opacity: 1;
+    transform: translate(0, 0) scale(1.08) rotate(-6deg);
+  }
+
+  12% {
+    transform: translate(0, 0) scale(1) rotate(-4deg);
+  }
+
+  26% {
+    opacity: 1;
+    transform: translate(-6%, -40%) scale(1) rotate(3deg);
+  }
+
+  34%,
+  100% {
+    opacity: 0;
+    transform: translate(-10%, -90%) scale(0.86) rotate(-2deg);
+  }
+}
+
+@keyframes cat-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-1.6%);
+  }
+}
+
+@keyframes leg-swing {
+  0%,
+  100% {
+    transform: rotate(11deg);
+  }
+
+  50% {
+    transform: rotate(-11deg);
+  }
+}
+
+@keyframes heart-rise {
+  0% {
+    opacity: 0;
+    transform: translate(0, 0) scale(0.3);
+  }
+
+  6% {
+    opacity: 1;
+    transform: translate(0, -6px) scale(1);
+  }
+
+  22% {
+    opacity: 1;
+    transform: translate(-5px, -34px) scale(1) rotate(-8deg);
+  }
+
+  34%,
+  100% {
+    opacity: 0;
+    transform: translate(3px, -58px) scale(0.8) rotate(6deg);
+  }
+}
+
+
+
+
+
+@keyframes blink {
+  0%,
+  92%,
+  98%,
+  100% {
+    transform: scaleY(1);
+  }
+
+  95% {
+    transform: scaleY(0.12);
+  }
+}
+
+
+
+/* ==========================================================
+   Static fallback (reduced motion, GSAP unavailable, deep link): no intro,
+   the landing shows straight away
+   ========================================================== */
+.intro--static .intro__room {
+  display: none;
+}
+
+.intro--static .hero__scribble path {
+  stroke-dashoffset: 0;
+}
+
+/* ==========================================================
+   Responsive
+   ========================================================== */
+@media (max-width: 900px) {
+  /* Mobile: text block 24px under the header, then the girl + cat film
+     full-bleed right under the text (cropped to the cat and the girl) */
+  .landing__stage {
+    margin-top: 0;
+    aspect-ratio: auto;
+  }
+
+  .landing__text {
+    position: relative;
+    top: auto;
+    height: auto;
+    display: block;
+    padding-top: 24px;
+    padding-bottom: 0;
+  }
+
+  /* heading + first subtitle: one block, same size, no gaps */
+  .hero__heading {
+    font-size: clamp(26px, 8.7vw, 40px);
+  }
+
+  .hero__greeting,
+  .hero__title {
+    font-size: 1em;
+    font-weight: 600;
+    line-height: 1.15;
+  }
+
+  .hero__title {
+    margin-top: 0;
+  }
+
+  .hero__subtitle {
+    max-width: none;
+    font-size: clamp(26px, 8.7vw, 40px);
+    font-weight: 600;
+    line-height: 1.15;
+  }
+
+  .hero__heading + .hero__subtitle {
+    margin-top: 0;
+  }
+
+  .hero__subtitle + .hero__subtitle {
+    font-size: clamp(16px, 4.4vw, 20px);
+    line-height: 1.3;
+    margin-top: 16px;
+  }
+
+  /* film: full screen width, 16px under the text */
+  .landing__art {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    height: 56.25vw;
+    margin-top: 16px;
+    overflow: hidden;
+  }
+
+  /* the canvas keeps the 1440 × 620 frame (film + stickers together),
+     scaled so the film is exactly 100vw wide and sits at the top */
+  .landing__canvas {
+    inset: auto;
+    left: -79.75vw;
+    top: -16.82vw;
+    width: 182.28vw;
+    height: auto;
+    aspect-ratio: 1440 / 620;
+  }
+
+  .hero-video {
+    -webkit-mask-image: none;
+    mask-image: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .part,
+  .sticker__float,
+  .home-art__girl,
+  .laptop-word {
+    animation: none !important;
+  }
+
+  .landing .letter {
+    opacity: 1;
+    transform: none;
+    transition: none !important;
+  }
+
+  .hero__scribble path {
+    stroke-dashoffset: 0;
+    transition: none !important;
+  }
+
+  .cat-hearts {
+    display: none;
+  }
+}

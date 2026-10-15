@@ -1,0 +1,343 @@
+/* ==========================================================
+   Hakkımda (Figma 391:3256)
+   ========================================================== */
+#about {
+  padding-top: 32px;
+}
+
+.home-section-head--about .home-section-head__label {
+  line-height: 60px;
+  border-bottom: 1px solid var(--home-line);
+}
+
+/* Intro text + framed photo card (Figma 391:3931):
+   white card 520 × 428, 1px #E0E0E0 stroke, 27px inner padding,
+   5:4 landscape photo; card's right edge aligns with the section line */
+.about__intro {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 48px;
+  padding-block: 28px 24px;
+}
+
+.about__text {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 692px;
+  font-size: 20px;
+  line-height: 40px;
+  color: var(--home-ink);
+}
+
+.about__text p + p {
+  margin-top: 40px; /* one empty 40px line between paragraphs */
+}
+
+.about__photo {
+  width: 520px;
+  flex-shrink: 0;
+}
+
+/* ---------- Photo stack (js/about-deck.js): polaroid cards ---------- */
+.photo-deck {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  aspect-ratio: 520 / 470;
+  container-type: inline-size;
+  perspective: 600px;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.photo-deck:focus-visible {
+  outline: 2px solid var(--home-ink);
+  outline-offset: 12px;
+  border-radius: 8px;
+}
+
+/* the wrapper follows the pointer (translate + 3D tilt); all cards share
+   one grid cell, centred */
+.photo-deck__card {
+  grid-area: 1 / 1;
+  transition: transform 450ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.photo-deck__card.is-dragging {
+  transition: none;
+  cursor: grabbing;
+}
+
+.photo-deck__card.is-top {
+  cursor: grab;
+}
+
+.photo-deck__card.is-hidden {
+  visibility: hidden;
+}
+
+/* polaroid: white frame, thick bottom with a handwritten caption; holds the
+   resting tilt / scale (springs between states) */
+.photo-deck__inner {
+  margin: 0;
+  padding: 2.7cqw 2.7cqw 0;
+  background: #fffefb;
+  border-radius: 3px;
+  box-shadow:
+    0 0 0 1px rgba(51, 51, 48, 0.07),
+    0 1px 2px rgba(51, 51, 48, 0.08),
+    0 18px 36px -16px rgba(51, 51, 48, 0.4);
+  transform-origin: 90% 90%;
+  transition: transform 600ms cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.photo-deck__inner img {
+  display: block;
+  width: var(--photo-w);
+  height: auto;
+  object-fit: cover;
+  background: #ece8df;
+  pointer-events: none;
+}
+
+.photo-deck__caption {
+  height: 10.5cqw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Caveat", "Segoe Print", "Bradley Hand", cursive;
+  font-size: 4.6cqw;
+  line-height: 1;
+  color: #4a4740;
+}
+
+/* one photo: a single card with a gentle tilt */
+.photo-deck.is-single .photo-deck__inner {
+  transform: rotate(-2deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .photo-deck__card,
+  .photo-deck__inner {
+    transition: none;
+  }
+}
+
+/* "DENEYİM" section label above İş Deneyimi / Eğitim */
+.about__experience-head {
+  margin-top: 40px;
+  scroll-margin-top: 96px;
+}
+
+/* İş Deneyimi (592) | Eğitim (487) */
+.about__columns {
+  display: flex;
+  justify-content: space-between;
+  gap: 48px;
+  margin-top: 24px;
+  scroll-margin-top: 96px;
+}
+
+.about__column--experience {
+  flex: 0 1 592px;
+  min-width: 0;
+}
+
+.about__column--education {
+  flex: 0 1 487px;
+  min-width: 0;
+}
+
+.about__column-title {
+  margin-bottom: 24px;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 32.7px;
+  letter-spacing: 0.24px;
+  color: var(--home-ink);
+}
+
+.experience-list,
+.education-list {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  list-style: none;
+}
+
+/* Experience row */
+.experience-item {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  color: var(--home-ink);
+}
+
+.experience-item__main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.experience-item__logo {
+  width: 70px;
+  height: 70px;
+  flex-shrink: 0;
+  border-radius: 12px;
+  filter: drop-shadow(0 4.65px 6.98px rgba(0, 0, 0, 0.05));
+}
+
+.experience-item__text {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 267px;
+  font-size: 20.44px;
+}
+
+.experience-item__role {
+  font-weight: 700;
+  line-height: 16.35px;
+  letter-spacing: 0.2px;
+}
+
+.experience-item__company {
+  line-height: 18.4px;
+}
+
+.experience-item__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+  padding: 10px;
+  font-size: 16.35px;
+  letter-spacing: 0.16px;
+  white-space: nowrap;
+}
+
+.experience-item__location {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.experience-item__location img {
+  width: 12.26px;
+  height: 12.26px;
+}
+
+/* Education row */
+.education-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--home-ink);
+}
+
+.education-item__logo {
+  width: 70px;
+  height: 70px;
+  flex-shrink: 0;
+  border: 0.5px solid rgba(209, 209, 209, 0.5);
+  border-radius: 11px;
+  object-fit: cover;
+}
+
+.education-item__text {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.education-item__date {
+  font-size: 13.88px;
+  letter-spacing: 0.14px;
+}
+
+.education-item__name {
+  font-size: 17.36px;
+  font-weight: 700;
+  line-height: 15.62px;
+  letter-spacing: 0.35px;
+}
+
+.education-item__detail {
+  margin-top: -2px; /* 4px from the name in the design */
+  font-size: 13.88px;
+  line-height: 15.62px;
+}
+
+.education-item__gpa {
+  font-size: 10.41px;
+  letter-spacing: 0.1px;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+  .about__photo {
+    width: clamp(300px, 40vw, 520px);
+  }
+
+  .about__text {
+    font-size: 18px;
+    line-height: 34px;
+  }
+
+  .about__text p + p {
+    margin-top: 34px;
+  }
+}
+
+@media (max-width: 900px) {
+  .about__intro {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .about__photo {
+    width: 100%;
+    max-width: 520px;
+  }
+
+  .about__columns {
+    flex-direction: column;
+  }
+
+  .about__column--experience,
+  .about__column--education {
+    flex-basis: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .about__text {
+    font-size: 16px;
+    line-height: 28px;
+  }
+
+  .about__text p + p {
+    margin-top: 20px;
+  }
+
+  .experience-item {
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .experience-item__text {
+    font-size: 18px;
+  }
+
+  .experience-item__meta {
+    align-items: flex-start;
+    padding: 0 0 0 78px;
+    gap: 6px;
+    font-size: 15px;
+  }
+}

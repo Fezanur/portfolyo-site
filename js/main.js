@@ -1,0 +1,22 @@
+import { startAtTop } from "./scroll-start.js";
+import { Header, initHeader } from "../components/header.js";
+import { Hero } from "../components/hero.js";
+import { initIntro } from "./intro.js";
+import { initHeaderFill } from "./header-fill.js";
+import { Projects } from "../components/projects.js";
+import { About } from "../components/about.js";
+import { initPhotoDeck } from "./about-deck.js";
+import { Certificates } from "../components/certificates.js";
+import { Footer } from "../components/footer.js";
+
+document.getElementById("header").innerHTML = Header();
+initHeader();
+document.getElementById("hero").innerHTML = Hero();
+document.getElementById("projects").innerHTML = Projects();
+document.getElementById("about").innerHTML = About();
+document.getElementById("certificates").innerHTML = Certificates();
+document.getElementById("footer").innerHTML = Footer();
+startAtTop();
+initIntro();
+initHeaderFill();
+initPhotoDeck();

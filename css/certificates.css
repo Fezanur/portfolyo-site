@@ -1,0 +1,94 @@
+/* ==========================================================
+   Sertifikalar (Figma 391:3256)
+   ========================================================== */
+#certificates {
+  padding-top: 24px;
+  padding-bottom: 96px;
+}
+
+.certificates__title {
+  margin-bottom: 24px;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 39.4px;
+  letter-spacing: 0.24px;
+  color: var(--home-ink);
+}
+
+.certificates__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  list-style: none;
+}
+
+.certificate-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid rgba(209, 209, 209, 0.5);
+  border-radius: 12px;
+  color: var(--home-ink);
+}
+
+.certificate-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+}
+
+.certificate-card__brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.certificate-card__logo {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 5.3px;
+  object-fit: cover;
+}
+
+.certificate-card__platform {
+  font-size: 16px;
+  line-height: 19.7px;
+  white-space: nowrap;
+}
+
+.certificate-card__date {
+  font-size: 16px;
+  letter-spacing: 0.16px;
+  white-space: nowrap;
+}
+
+.certificate-card__title {
+  width: 240px;
+  max-width: 100%;
+  font-size: 16px;
+  line-height: 29.5px;
+  letter-spacing: -0.32px;
+}
+
+@media (max-width: 1100px) {
+  .certificates__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 560px) {
+  .certificates__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .certificate-card__title {
+    width: 100%;
+  }
+}

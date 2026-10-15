@@ -1,0 +1,1155 @@
+/* ==========================================================
+   Mobiclean detail page (Figma 510:3022, 1440 frame, 1200 column)
+   Hero = shared detail hero (project-detail.css). Sections below
+   are stacked 24px apart in the 1200px column.
+   ========================================================== */
+body.mobi-page {
+  --color-bg: #fbfaf6;
+  --mobi-ink: #0b140e;
+  --mobi-text: #3e4a42;
+  --mobi-green: #0e5c32;
+  --mobi-deep: #062b17;
+  --mobi-lime: #b6e388;
+  --mobi-lime-soft: #eaf7dc;
+  --mobi-mint: #9fd8b0;
+}
+
+.mobi-page main > section {
+  padding-block: 0;
+}
+
+/* Back link with the design's arrow icon (pointing left) */
+.mobi-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 24px;
+  margin-bottom: 0;
+  line-height: 13px;
+}
+
+.mobi-back__icon {
+  transform: rotate(180deg);
+}
+
+/* Hero card: 1088px, 56px inside the 1200 column, as in the design */
+.mobi-page .container {
+  max-width: calc(1200px + 2 * var(--container-padding));
+}
+
+.mobi-page .detail-hero {
+  max-width: 1088px;
+  margin: 56px auto 0;
+}
+
+.mobi-hero__visual {
+  background: #fff;
+  padding: 32px;
+}
+
+/* iPhone frame (two layers) with the screen design on top */
+.mobi-phone {
+  position: relative;
+  width: 231.448px;
+  max-width: 100%;
+  aspect-ratio: 231.448 / 475.058;
+}
+
+.mobi-phone__frame,
+.mobi-phone__screen {
+  position: absolute;
+  max-width: none;
+}
+
+.mobi-phone__frame {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mobi-phone__screen {
+  top: 1.88%;
+  left: 4.41%;
+  width: 91.11%;
+  height: 96.24%;
+}
+
+/* ---------- Shared type ---------- */
+.mobi-body {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 0 80px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  color: var(--mobi-ink);
+}
+
+.mobi-section {
+  padding: 80px 48px;
+}
+
+.mobi-h2 {
+  font-size: 64px;
+  font-weight: 800;
+  line-height: 64px;
+  letter-spacing: -2.88px;
+  color: var(--mobi-ink);
+}
+
+.mobi-h2--sm {
+  font-size: 42px;
+  line-height: 44.1px;
+  letter-spacing: -1.68px;
+}
+
+.mobi-display {
+  font-size: 80px;
+  font-weight: 800;
+  line-height: 80px;
+  letter-spacing: -4px;
+  color: #fff;
+}
+
+.mobi-display--ink {
+  color: var(--mobi-ink);
+}
+
+.mobi-display--deep {
+  color: var(--mobi-deep);
+}
+
+.mobi-eyebrow {
+  margin-bottom: 12px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 23.25px;
+}
+
+.mobi-eyebrow--lime { color: var(--mobi-lime); }
+.mobi-eyebrow--green { color: var(--mobi-green); }
+.mobi-eyebrow--deep { color: var(--mobi-deep); }
+
+.mobi-lead {
+  font-size: 18px;
+  line-height: 27.9px;
+  color: var(--mobi-text);
+}
+
+.mobi-bullets {
+  list-style: disc;
+  padding-left: 24px;
+  font-size: 16px;
+  line-height: 25.2px;
+}
+
+.mobi-bullets--lg {
+  padding-left: 27px;
+  font-size: 18px;
+  line-height: 27.9px;
+  color: var(--mobi-text);
+}
+
+/* Heading with a coloured shape tucked behind its first letter */
+.mobi-shape {
+  position: relative;
+  padding: 13.25px 0 0 18px;
+  isolation: isolate;
+}
+
+.mobi-shape::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
+.mobi-shape--square::before {
+  width: 44px;
+  height: 44px;
+  border-radius: 6px;
+  background: var(--mobi-lime);
+}
+
+.mobi-shape--circle::before {
+  width: 44px;
+  height: 44px;
+  border-radius: 22px;
+  background: var(--mobi-mint);
+}
+
+.mobi-shape--diamond::before {
+  left: 11.99px;
+  top: 4px;
+  width: 36px;
+  height: 36px;
+  border-radius: 4px;
+  background: var(--mobi-green);
+  transform: rotate(45deg);
+}
+
+.mobi-shape--star {
+  padding-top: 14px;
+}
+
+.mobi-shape--star::before {
+  left: -11px;
+  top: -0.5px;
+  width: 58px;
+  height: 58px;
+  background: url("../assets/images/mobiclean-detay/star.svg") 50% 37% / 80.8% 77.18% no-repeat;
+}
+
+.mobi-shape--triangle {
+  padding-top: 14px;
+}
+
+.mobi-shape--triangle::before {
+  width: 0;
+  height: 0;
+  border-left: 24px solid transparent;
+  border-right: 24px solid transparent;
+  border-bottom: 42px solid var(--mobi-mint);
+}
+
+/* ---------- Brief / Yaklaşım / Rolüm ---------- */
+.mobi-intro__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 48px;
+  min-height: 299px;
+}
+
+.mobi-intro__col {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ---------- Ekran Akışları ---------- */
+.mobi-flows__title {
+  margin-top: 95px;
+}
+
+.mobi-flows {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-top: 28px;
+}
+
+.mobi-flow {
+  min-height: 363px;
+  padding: 21px 15px 24px;
+  background: #f2f6f0;
+  border-top: 6px solid #025a31;
+  border-radius: 16px;
+  color: #000;
+}
+
+.mobi-flow__step {
+  display: inline-block;
+  padding: 2px 4px;
+  border-radius: 10px;
+  background: var(--mobi-green);
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 20.15px;
+  color: var(--mobi-lime);
+}
+
+/* title box bottom-aligned so one- and two-line titles share a baseline */
+.mobi-flow__title {
+  display: flex;
+  align-items: flex-end;
+  min-height: 64px;
+  margin-top: 1px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 26.2px;
+}
+
+.mobi-flow .mobi-bullets {
+  margin-top: 22px;
+}
+
+/* ---------- Proje Planı ---------- */
+.mobi-plan {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding-top: 0;
+}
+
+.mobi-plan__scroll {
+  overflow-x: auto;
+  padding: 24px 0 8px;
+}
+
+.mobi-plan__chart {
+  position: relative;
+  min-width: 760px;
+  /* six dashed week columns */
+  background:
+    repeating-linear-gradient(to bottom, #cdd6ce 0 6px, transparent 6px 10px) right top / 1.5px 100% no-repeat;
+}
+
+.mobi-plan__chart::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(to bottom, #cdd6ce 0 6px, transparent 6px 10px);
+  -webkit-mask: repeating-linear-gradient(to right, #000 0 1.5px, transparent 1.5px calc(100% / 6));
+  mask: repeating-linear-gradient(to right, #000 0 1.5px, transparent 1.5px calc(100% / 6));
+  pointer-events: none;
+}
+
+.mobi-plan__weeks,
+.mobi-plan__row {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+
+.mobi-plan__weeks {
+  padding-bottom: 20px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21.7px;
+  color: #7c877f;
+}
+
+.mobi-plan__weeks span {
+  padding-left: 12px;
+}
+
+.mobi-plan__row {
+  padding-bottom: 28px;
+}
+
+.mobi-plan__bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 47.25px;
+  padding: 0 16px;
+  border-radius: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 23.25px;
+  white-space: nowrap;
+}
+
+.mobi-plan__bar i {
+  flex: none;
+  width: 8px;
+  height: 8px;
+  border-radius: 4px;
+}
+
+.mobi-plan__bar--primary { background: var(--mobi-green); color: #fff; }
+.mobi-plan__bar--primary i { background: var(--mobi-lime); }
+.mobi-plan__bar--lime { background: var(--mobi-lime); color: #0b3d20; }
+.mobi-plan__bar--lime i { background: var(--mobi-green); }
+.mobi-plan__bar--orange { background: #f2a93b; color: #3d2600; }
+.mobi-plan__bar--orange i { background: #fff; }
+.mobi-plan__bar--red { background: #ef6b6b; color: #fff; }
+.mobi-plan__bar--red i { background: #fff; }
+
+.mobi-plan__row--notes {
+  padding-bottom: 8px;
+}
+
+.mobi-plan__notes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-left: 29px;
+  padding-right: 12px;
+  font-size: 14px;
+  line-height: 21.7px;
+  color: var(--mobi-text);
+}
+
+.mobi-plan__notes:first-child {
+  padding-left: 29px;
+}
+
+/* ---------- Tasarım Süreci (pinned notes on ruled paper) ---------- */
+.mobi-process {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 80px;
+  padding: 115.2px 0;
+  background:
+    linear-gradient(180deg, transparent 0 6.6168%, #dce3da 6.6168% 6.7465%, transparent 6.7465% 13.363%, #dce3da 13.363% 13.493%, transparent 13.493% 20.11%, #dce3da 20.11% 20.24%, transparent 20.24% 26.856%, #dce3da 26.856% 26.986%, transparent 26.986% 33.603%, #dce3da 33.603% 33.733%, transparent 33.733% 40.349%, #dce3da 40.349% 40.479%, transparent 40.479% 47.096%, #dce3da 47.096% 47.226%, transparent 47.226% 53.842%, #dce3da 53.842% 53.972%, transparent 53.972% 60.589%, #dce3da 60.589% 60.719%, transparent 60.719% 67.335%, #dce3da 67.335% 67.465%, transparent 67.465% 74.082%, #dce3da 74.082% 74.212%, transparent 74.212% 80.828%, #dce3da 80.828% 80.958%, transparent 80.958% 87.575%, #dce3da 87.575% 87.705%, transparent 87.705% 94.321%, #dce3da 94.321% 94.451%, transparent 94.451%),
+    #eef2ec;
+}
+
+.mobi-process__head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.mobi-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 800;
+  line-height: 31px;
+  letter-spacing: -0.6px;
+  color: var(--mobi-green);
+}
+
+.mobi-brand__mark {
+  display: grid;
+  place-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  background: var(--mobi-green);
+}
+
+.mobi-process__title {
+  color: #24302a;
+  text-align: center;
+}
+
+.mobi-notes {
+  position: relative;
+  width: 1200px;
+  height: 449px;
+}
+
+.mobi-note {
+  position: absolute;
+}
+
+/* positions / tilts from the design */
+.mobi-note--1 { left: 33.49px; width: 313.25px; top: -12.93px; rotate: -3deg; }
+.mobi-note--2 { left: 308.49px; width: 310.63px; top: 94.07px; rotate: 3.02deg; }
+.mobi-note--3 { left: 605.49px; width: 307.93px; top: -32.93px; rotate: -2deg; }
+.mobi-note--4 { left: 868.49px; width: 310.63px; top: 89.07px; rotate: 3.02deg; }
+
+.mobi-note__paper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-height: 220px;
+  padding: 26px 22px 28px;
+  border: 14px solid #fff;
+  border-radius: 30px;
+  background-clip: padding-box;
+  box-shadow: 0 30px 50px -24px rgba(6, 43, 23, 0.28), 0 2px 0 0 rgba(0, 0, 0, 0.03);
+}
+
+/* notes 1 and 3 have a taller white margin at the bottom */
+.mobi-note--1 .mobi-note__paper,
+.mobi-note--3 .mobi-note__paper {
+  border-bottom-width: 62px;
+}
+
+.mobi-note--green .mobi-note__paper { background-color: #eaf7dc; }
+.mobi-note--blue .mobi-note__paper { background-color: #e4f2fb; }
+.mobi-note--orange .mobi-note__paper { background-color: #fdf1df; }
+.mobi-note--red .mobi-note__paper { background-color: #fce7e7; }
+
+.mobi-note__num {
+  font-size: 36px;
+  font-weight: 300;
+  line-height: 55.8px;
+  letter-spacing: -1.44px;
+}
+
+.mobi-note--green .mobi-note__num { color: #2b8a4e; }
+.mobi-note--blue .mobi-note__num { color: #1f6fae; }
+.mobi-note--orange .mobi-note__num { color: #b66a00; }
+.mobi-note--red .mobi-note__num { color: #b23434; }
+
+.mobi-note__title {
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 37.2px;
+  letter-spacing: -0.72px;
+}
+
+.mobi-note__text {
+  max-width: 224px;
+  font-size: 16px;
+  line-height: 24.8px;
+  color: var(--mobi-text);
+}
+
+/* glossy pin */
+.mobi-note__pin {
+  position: absolute;
+  top: -18px;
+  left: calc(50% + 0.95px);
+  z-index: 1;
+  width: 36px;
+  height: 36px;
+  border-radius: 18px;
+  translate: -50% 0;
+}
+
+.mobi-note--green .mobi-note__pin {
+  background: radial-gradient(circle at 35% 30%, #d9f7e3 0, #9ee2b7 6.5px, #63cc8a 13px, #47ab6c 23.7px, #2b8a4e 34.4px);
+  box-shadow: 0 8px 18px rgba(43, 138, 78, 0.55);
+}
+
+.mobi-note--blue .mobi-note__pin {
+  background: radial-gradient(circle at 35% 30%, #e3f4ff 0, #9fd5f7 6.5px, #5bb6ef 13px, #3d93cf 23.7px, #1f6fae 34.4px);
+  box-shadow: 0 8px 18px rgba(31, 111, 174, 0.5);
+}
+
+.mobi-note--orange .mobi-note__pin {
+  background: radial-gradient(circle at 35% 30%, #fff1d6 0, #f9cd89 6.5px, #f2a93b 13px, #d48a1e 23.7px, #b66a00 34.4px);
+  box-shadow: 0 8px 18px rgba(182, 106, 0, 0.5);
+}
+
+.mobi-note--red .mobi-note__pin {
+  background: radial-gradient(circle at 35% 30%, #ffe1e1 0, #f7a6a6 6.5px, #ef6b6b 13px, #d15050 23.7px, #b23434 34.4px);
+  box-shadow: 0 8px 18px rgba(178, 52, 52, 0.5);
+}
+
+/* ---------- Dark sections (Benchmark, UI Tasarım) ---------- */
+.mobi-dark {
+  padding: 97px 80px;
+  background: var(--mobi-deep);
+  color: #fff;
+}
+
+.mobi-split-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  padding-bottom: 12px;
+}
+
+.mobi-split-head__desc {
+  max-width: 520px;
+  font-size: 18px;
+  line-height: 27.9px;
+  color: #c9ddcf;
+}
+
+.mobi-split-head__desc--deep {
+  max-width: 480px;
+  color: #1d4a2c;
+}
+
+/* one wide collage (transparent PNG with its own framed panels) */
+.mobi-benchmark__img {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-top: 28px;
+}
+
+.mobi-benchmark__shots {
+  display: flex;
+  align-items: flex-start;
+  gap: 27px;
+  margin-top: 28px;
+}
+
+.mobi-shot {
+  flex: none;
+  border-radius: 16px;
+  background: #0d3b22;
+  overflow: hidden;
+}
+
+.mobi-shot img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.mobi-shot--wide {
+  width: 589.984px;
+  height: 424.419px;
+  padding: 7.942px;
+}
+
+.mobi-shot--wide img {
+  border-radius: 10.211px;
+}
+
+.mobi-shot--narrow {
+  width: 415px;
+  height: 427.72px;
+  padding: 8px;
+}
+
+.mobi-shot--narrow img {
+  width: 399px;
+  height: 412px;
+  border-radius: 7.183px;
+}
+
+.mobi-brands__label {
+  margin-top: 28px;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 21.7px;
+  color: #8fb79b;
+}
+
+.mobi-brands {
+  max-width: 1040px;
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.6;
+  color: #c9ddcf;
+}
+
+/* ---------- Wireframe ---------- */
+/* the laptop mockup is cropped on its left side, so it sits flush
+   against the column's left edge */
+.mobi-wireframe {
+  display: flex;
+  align-items: center;
+  gap: 81px;
+  min-height: 628px;
+  padding: 0 56px 0 0;
+}
+
+.mobi-wireframe__img {
+  flex: none;
+  width: 650px;
+  height: auto;
+}
+
+.mobi-wireframe__text {
+  flex: 1;
+  min-width: 0;
+}
+
+.mobi-wireframe__desc {
+  max-width: 305px;
+  margin-top: 24px;
+  font-size: 18px;
+  line-height: 27.9px;
+}
+
+.mobi-callout {
+  max-width: 320px;
+  margin-top: 16px;
+  padding: 15px 18px 16px;
+  border-radius: 16px;
+  background: var(--mobi-lime-soft);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24.8px;
+  color: #0b3d20;
+}
+
+/* ---------- UI Kit ---------- */
+.mobi-uikit {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  padding: 80px 68px 88px;
+  border-radius: 4px;
+  background: rgba(182, 227, 136, 0.38);
+}
+
+.mobi-tiles {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.mobi-tile {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 190px;
+  padding: 20px;
+  border-radius: 24px;
+  font-size: 14px;
+  line-height: 21.7px;
+}
+
+.mobi-tile strong {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 31px;
+}
+
+.mobi-tile--primary { background: var(--mobi-green); color: var(--mobi-lime); }
+.mobi-tile--primary strong { color: #fff; }
+.mobi-tile--lime { background: var(--mobi-lime-soft); color: #3e5a2a; }
+.mobi-tile--lime strong { color: var(--mobi-deep); }
+.mobi-tile--black { background: #000; color: #b5b5b5; }
+.mobi-tile--black strong { color: #fff; }
+.mobi-tile--white { background: #fff; color: #7c877f; }
+
+.mobi-tile__swatches {
+  display: flex;
+  gap: 8px;
+}
+
+.mobi-tile__swatches i {
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+}
+
+.mobi-tile .mobi-tile__aa {
+  font-size: 34px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: var(--mobi-deep);
+}
+
+.mobi-uikit__shot {
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 24px 40px -20px rgba(6, 43, 23, 0.28);
+}
+
+.mobi-uikit__shot img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* ---------- 04 Ekran Akışları: tab list on the left, panel on the right ---------- */
+.mobi-ui {
+  padding: 92px 56px 72px;
+}
+
+.mobi-ui__lead {
+  margin-top: 28px;
+  font-size: 20px;
+  line-height: 1.5;
+  color: #e6efe8;
+}
+
+.mobi-ui__body {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 56px;
+  margin-top: 40px;
+}
+
+.mobi-tabs {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.mobi-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  width: fit-content;
+  white-space: nowrap;
+  padding: 12px 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  font-size: 17px;
+  line-height: 26px;
+  text-align: left;
+  color: rgba(230, 239, 232, 0.55);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.mobi-tab:hover {
+  color: rgba(230, 239, 232, 0.85);
+}
+
+.mobi-tab[aria-selected="true"] {
+  font-weight: 600;
+  color: var(--mobi-lime);
+}
+
+.mobi-tab__chevron {
+  flex: none;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.mobi-tab[aria-selected="true"] .mobi-tab__chevron {
+  opacity: 1;
+}
+
+.mobi-tab:focus-visible {
+  outline: 2px solid var(--mobi-lime);
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+.mobi-slide {
+  animation: mobi-slide-in 0.35s ease;
+}
+
+.mobi-slide[hidden] {
+  display: none;
+}
+
+@keyframes mobi-slide-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.mobi-slide__num {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 34px;
+  border-radius: 17px;
+  background: #14632f;
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--mobi-lime);
+}
+
+.mobi-slide__title {
+  margin-top: 18px;
+  font-size: 46px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -2px;
+  color: #fff;
+}
+
+.mobi-slide__desc {
+  max-width: 760px;
+  margin-top: 16px;
+  font-size: 20px;
+  line-height: 1.4;
+  color: #fff;
+}
+
+/* screen mockups: up to 618px wide (like the design), never taller than 440 */
+.mobi-slide__img {
+  display: block;
+  width: auto;
+  max-width: min(100%, 618px);
+  height: auto;
+  max-height: 440px;
+  margin-top: 40px;
+  border-radius: 12px;
+}
+
+.mobi-slide__tags {
+  margin-top: 20px;
+  font-size: 16px;
+  font-style: italic;
+  line-height: 24px;
+  color: rgba(230, 239, 232, 0.55);
+  white-space: pre-wrap;
+}
+
+/* ---------- Teşekkürler ---------- */
+.mobi-thanks {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 724px;
+  padding-top: 130px;
+  border-radius: 4px;
+  background: var(--mobi-green);
+  overflow: hidden;
+  color: #fff;
+}
+
+.mobi-thanks__sun {
+  position: relative;
+  width: 89px;
+  height: 45px;
+}
+
+.mobi-thanks__rays {
+  position: absolute;
+  inset: 0;
+}
+
+.mobi-thanks__half {
+  position: absolute;
+  left: 22px;
+  bottom: 0;
+}
+
+.mobi-thanks__title {
+  margin-top: 30px;
+  font-size: 88px;
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -4.4px;
+}
+
+.mobi-thanks__top {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 80px;
+  padding: 14px 40px 14px 34px;
+  border-radius: 999px;
+  background: var(--mobi-lime);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 24px;
+  color: var(--mobi-deep);
+}
+
+.mobi-thanks__top img {
+  width: 18px;
+  height: 18px;
+  rotate: -90deg;
+}
+
+.mobi-thanks__word {
+  position: absolute;
+  left: -6px;
+  bottom: -64px;
+  font-size: 300px;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -14px;
+  white-space: nowrap;
+  color: #1a7040;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* ==========================================================
+   Narrower screens
+   ========================================================== */
+@media (max-width: 1240px) {
+  .mobi-notes {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 300px));
+    justify-content: center;
+    gap: 48px 32px;
+  }
+
+  .mobi-note {
+    position: relative;
+    inset: auto;
+    width: auto !important;
+  }
+
+  .mobi-benchmark__shots {
+    flex-wrap: wrap;
+  }
+
+  .mobi-wireframe__img {
+    width: 52%;
+  }
+}
+
+@media (max-width: 900px) {
+  .mobi-page .detail-hero {
+    margin: 32px 0 0;
+  }
+
+  .mobi-brands {
+    font-size: 12px;
+  }
+
+  .mobi-body {
+    padding-inline: 16px;
+  }
+
+  .mobi-section {
+    padding: 56px 0;
+  }
+
+  .mobi-h2 {
+    font-size: 44px;
+    line-height: 46px;
+    letter-spacing: -1.8px;
+  }
+
+  .mobi-h2--sm {
+    font-size: 34px;
+    line-height: 38px;
+  }
+
+  .mobi-display {
+    font-size: 52px;
+    line-height: 54px;
+    letter-spacing: -2.4px;
+  }
+
+  .mobi-intro__grid,
+  .mobi-flows {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
+  .mobi-flows {
+    gap: 16px;
+  }
+
+  .mobi-flow {
+    min-height: 0;
+  }
+
+  .mobi-flows__title {
+    margin-top: 56px;
+  }
+
+  .mobi-plan {
+    padding-top: 0;
+  }
+
+  .mobi-process {
+    padding: 72px 16px;
+    gap: 56px;
+  }
+
+  .mobi-notes {
+    grid-template-columns: minmax(0, 320px);
+  }
+
+  .mobi-dark,
+  .mobi-uikit {
+    padding: 56px 20px;
+  }
+
+  .mobi-shot--wide,
+  .mobi-shot--narrow {
+    width: 100%;
+    height: auto;
+  }
+
+  .mobi-shot--narrow img {
+    width: 100%;
+    height: auto;
+  }
+
+  .mobi-wireframe {
+    flex-direction: column;
+    gap: 32px;
+    padding: 40px 0;
+  }
+
+  .mobi-wireframe__img {
+    width: 100%;
+  }
+
+  .mobi-tiles {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .mobi-tile {
+    min-height: 140px;
+  }
+
+  .mobi-ui {
+    padding: 56px 20px;
+  }
+
+  .mobi-ui__lead {
+    font-size: 17px;
+  }
+
+  /* tabs become a horizontal scroller above the panel */
+  .mobi-ui__body {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 24px;
+    margin-top: 28px;
+  }
+
+  .mobi-tabs {
+    flex-direction: row;
+    gap: 8px;
+    margin-right: -20px;
+    padding-right: 20px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .mobi-tabs::-webkit-scrollbar {
+    display: none;
+  }
+
+  .mobi-tab {
+    flex: none;
+    padding: 7px 14px;
+    border: 1px solid rgba(182, 227, 136, 0.35);
+    border-radius: 999px;
+    font-size: 13px;
+    line-height: 20px;
+    white-space: nowrap;
+  }
+
+  .mobi-tab[aria-selected="true"] {
+    background: var(--mobi-lime);
+    border-color: var(--mobi-lime);
+    color: var(--mobi-deep);
+  }
+
+  .mobi-tab__chevron {
+    display: none;
+  }
+
+  .mobi-slide__title {
+    font-size: 32px;
+    letter-spacing: -1.2px;
+  }
+
+  .mobi-slide__desc {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .mobi-slide__img {
+    max-width: 100%;
+    max-height: 420px;
+    margin-top: 24px;
+  }
+
+  .mobi-thanks {
+    min-height: 480px;
+    padding-top: 88px;
+  }
+
+  .mobi-thanks__title {
+    font-size: 56px;
+    letter-spacing: -2.4px;
+  }
+
+  .mobi-thanks__top {
+    margin-top: 48px;
+  }
+
+  .mobi-thanks__word {
+    font-size: 130px;
+    letter-spacing: -6px;
+    bottom: -28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobi-slide {
+    animation: none;
+  }
+}

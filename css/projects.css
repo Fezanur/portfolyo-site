@@ -1,0 +1,288 @@
+/* ==========================================================
+   Projelerim (Figma 391:3256)
+   ========================================================== */
+#projects {
+  padding-top: 32px;
+  padding-bottom: 56px;
+}
+
+/* Shared section head: small caps label + underlined row */
+.home-section-head__label {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 40px;
+  color: var(--home-ink);
+}
+
+.home-section-head__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 24px;
+  margin-top: 8px;
+  border-bottom: 1px solid var(--home-line);
+}
+
+/* Projelerim: label and note on one line above the rule */
+.home-section-head__row--single {
+  margin-top: 0;
+}
+
+.home-section-head__title {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 40px;
+  color: var(--home-ink);
+}
+
+.home-section-head__note {
+  font-size: 16px;
+  line-height: 40px;
+  color: var(--home-ink);
+}
+
+/* ---------- Card shell ---------- */
+.project-card {
+  background: #fff;
+  border: 1px solid rgba(51, 51, 48, 0.15);
+  border-radius: 6px;
+  overflow: hidden;
+  margin-inline: 2px;
+}
+
+.project-card__visual {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.project-card__phones {
+  position: relative;
+  height: auto;
+  max-width: 100%;
+}
+
+.project-card__content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 18px;
+  min-width: 0;
+}
+
+/* Featured: 592 | 16 | 586 inside a 1196 × 405 card */
+.project-card--featured {
+  display: grid;
+  grid-template-columns: minmax(0, 592fr) minmax(0, 602fr);
+  min-height: 405px;
+  margin-top: 56px;
+}
+
+.project-card--featured .project-card__visual {
+  border-right: 1px solid rgba(51, 51, 48, 0.15);
+}
+
+.project-card__phones--periyod {
+  width: min(408px, 80%);
+}
+
+.project-card--featured .project-card__content {
+  justify-content: center;
+  padding: 40px 44px 32px 60px;
+}
+
+/* Two stacked cards: 574 wide, 376px visual, min 540 tall */
+.project-row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 48px;
+  row-gap: 32px;
+  margin-top: 56px;
+}
+
+.project-card--stacked {
+  display: flex;
+  flex-direction: column;
+  min-height: 540px;
+}
+
+.project-card--stacked .project-card__visual {
+  height: 376px;
+  flex-shrink: 0;
+  border-bottom: 1px solid rgba(51, 51, 48, 0.15);
+}
+
+.project-card__phones--astroloji {
+  width: min(466px, 92%);
+}
+
+/* Mobiclean: the single phone from the detail page cover */
+.project-card__phones--mobiclean {
+  width: auto;
+  height: 86%;
+}
+
+.project-card--stacked .project-card__content {
+  padding: 40px 44px 32px;
+}
+
+/* ---------- Card text ---------- */
+.project-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  line-height: 12px;
+  letter-spacing: 0.96px;
+  text-transform: uppercase;
+}
+
+.project-meta__badge {
+  padding: 4px 8px;
+  border-radius: 2px;
+  background: var(--color-tertiary-600);
+  color: #f7f3eb;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 11px;
+  letter-spacing: 0.88px;
+}
+
+.project-meta__dot {
+  color: var(--home-faint);
+}
+
+.project-meta__years {
+  color: var(--home-muted);
+}
+
+.project-card__title {
+  max-width: 499px;
+  font-size: 38px;
+  font-weight: 400;
+  line-height: 42px;
+  letter-spacing: -0.95px;
+  color: var(--home-ink);
+  text-wrap: balance;
+}
+
+.project-card__desc {
+  max-width: 499px;
+  font-size: 14px;
+  line-height: 21px;
+  letter-spacing: -0.07px;
+  color: var(--home-muted);
+  text-wrap: pretty;
+}
+
+.project-hashtags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  font-size: 12px;
+  line-height: 12px;
+  letter-spacing: 0.96px;
+  text-transform: uppercase;
+  color: var(--home-faint);
+}
+
+.project-hashtags li {
+  display: flex;
+  gap: 10px;
+  white-space: nowrap;
+}
+
+.project-hashtags li::before {
+  content: "·";
+}
+
+.project-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  padding: 0 24px;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 90px;
+  background: var(--color-tertiary-600);
+  color: #fff;
+  font-size: 14px;
+  line-height: 21px;
+  white-space: nowrap;
+  transition: opacity 0.15s ease;
+}
+
+.project-button:hover {
+  opacity: 0.85;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1100px) {
+  .project-row {
+    column-gap: 24px;
+  }
+
+  .project-card--stacked .project-card__visual {
+    height: clamp(260px, 30vw, 376px);
+  }
+}
+
+@media (max-width: 900px) {
+  .project-card--featured {
+    grid-template-columns: 1fr;
+  }
+
+  .project-card--featured .project-card__visual {
+    border-right: none;
+    border-bottom: 1px solid rgba(51, 51, 48, 0.15);
+    min-height: 320px;
+  }
+
+  .project-card--featured .project-card__content {
+    padding: 32px 24px;
+  }
+
+  .project-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-section-head__note {
+    line-height: 1.4;
+    padding-bottom: 12px;
+  }
+
+  .project-card__title {
+    font-size: 28px;
+    line-height: 1.15;
+  }
+
+  .project-card--stacked {
+    min-height: 0;
+  }
+
+  .project-card--stacked .project-card__visual,
+  .project-card--featured .project-card__visual {
+    height: auto;
+    min-height: 0;
+    padding: 24px 12px;
+  }
+
+  .project-card--stacked .project-card__content {
+    padding: 28px 20px 24px;
+  }
+
+  .project-card__phones--mobiclean {
+    height: 280px;
+  }
+
+  .project-card--featured .project-card__content {
+    padding: 28px 20px 24px;
+  }
+}
