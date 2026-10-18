@@ -1,5 +1,5 @@
 /* Opening page: plays the film once, then opens the home page.
-   - Tap / click / key / "Geç" skips straight to the home page.
+   - Tap / click / key skips straight to the home page.
    - If the film can't start (autoplay blocked, slow network, error) the
      home page opens after a short wait instead of a blank screen.
    - Reduced motion: go to the home page right away.
