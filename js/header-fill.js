@@ -21,8 +21,8 @@ export function initHeaderFill() {
   // cheap enough to run on every scroll event (one custom property)
   const update = () => {
     if (phone.matches) {
-      // phones: always solid, so the status-bar strip is filled too
-      header.style.setProperty("--header-fill", "1");
+      // phones: solid background comes from CSS (hero.css); no inline fill
+      header.style.removeProperty("--header-fill");
       return;
     }
     const past = window.scrollY - start;

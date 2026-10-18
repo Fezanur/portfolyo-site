@@ -52,7 +52,9 @@ export function initIntro() {
   gsap.set(landing, { autoAlpha: 0 });
   gsap.set(stickers, { scale: 0, rotate: -25 });
   if (girl) gsap.set(girl, { autoAlpha: 0, y: 26 });
-  if (header) gsap.set(header, { autoAlpha: 0, y: -16 });
+  // phones: the header stays put (no fade / slide) — like the detail pages
+  const animateHeader = header && !window.matchMedia("(max-width: 860px)").matches;
+  if (animateHeader) gsap.set(header, { autoAlpha: 0, y: -16 });
 
   // The film ended on paper: the landing arrives with a slight push that
   // settles, as if the camera kept moving forward
@@ -66,7 +68,7 @@ export function initIntro() {
     .add(() => startWorking(landing), 0.9)
     .add(() => walkCatIn(cat, gsap), 0.5)
     .to(stickers, { scale: 1, rotate: 0, ease: "back.out(2.4)", duration: 0.6, stagger: 0.12 }, 0.85);
-  if (header) tl.to(header, { autoAlpha: 1, y: 0, ease: "expo.out", duration: 0.9 }, 0.55);
+  if (animateHeader) tl.to(header, { autoAlpha: 1, y: 0, ease: "expo.out", duration: 0.9 }, 0.55);
 
   // ?introDebug: window.__intro.progress(0…1) scrubs the entrance by hand
   if (debug) window.__intro = tl;

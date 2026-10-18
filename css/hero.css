@@ -52,6 +52,18 @@ body.home header {
   backdrop-filter: blur(calc(var(--header-fill) * 8px));
 }
 
+/* Phones: exactly the detail pages' header — a plain solid background
+   from the first paint (no see-through fill, no blur), which is what lets
+   iOS Safari paint the status-bar strip in the header's colour */
+@media (max-width: 860px) {
+  body.home header {
+    background: var(--color-bg);
+    box-shadow: 0 2px 2px rgba(27, 28, 29, 0.04);
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+  }
+}
+
 /* ==========================================================
    Landing frame (the opening film is its own page: index.html)
    ========================================================== */
