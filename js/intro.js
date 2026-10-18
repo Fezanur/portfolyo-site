@@ -68,7 +68,10 @@ export function initIntro() {
     .add(() => startWorking(landing), 0.9)
     .add(() => walkCatIn(cat, gsap), 0.5)
     .to(stickers, { scale: 1, rotate: 0, ease: "back.out(2.4)", duration: 0.6, stagger: 0.12 }, 0.85);
-  if (animateHeader) tl.to(header, { autoAlpha: 1, y: 0, ease: "expo.out", duration: 0.9 }, 0.55);
+  if (animateHeader) {
+    // hand the header back to CSS afterwards (the hide-on-scroll transform)
+    tl.to(header, { autoAlpha: 1, y: 0, ease: "expo.out", duration: 0.9, clearProps: "transform,opacity,visibility" }, 0.55);
+  }
 
   // ?introDebug: window.__intro.progress(0…1) scrubs the entrance by hand
   if (debug) window.__intro = tl;

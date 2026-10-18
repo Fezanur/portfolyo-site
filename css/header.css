@@ -331,18 +331,18 @@ header {
   }
 }
 
-/* Detail pages: header hides on scroll down, returns on scroll up
+/* All pages: header hides on scroll down, returns on scroll up
    (js/header-autohide.js) */
-body:not(.home) > header {
+body > header {
   transition: transform 0.3s ease;
 }
 
-body:not(.home) > header.is-hidden {
+body > header.is-hidden {
   transform: translateY(-100%);
 }
 
 @media (prefers-reduced-motion: reduce) {
-  body:not(.home) > header {
+  body > header {
     transition: none;
   }
 }

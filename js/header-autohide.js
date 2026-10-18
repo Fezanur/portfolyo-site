@@ -1,4 +1,4 @@
-/* Detail pages: the header slides away while scrolling down and comes
+/* The header slides away while scrolling down and comes
    back as soon as the visitor scrolls up (or reaches the top). */
 export function initHeaderAutohide(header = document.querySelector("body > header")) {
   if (!header) return;
