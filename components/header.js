@@ -3,14 +3,14 @@ import { Socials } from "./socials.js";
 export function Header() {
   return `
     <div class="container header__inner">
-      <a href="index.html?home" class="header__brand">
+      <a href="anasayfa.html" class="header__brand">
         <img src="assets/images/logo.svg" alt="fntekin" class="header__logo-img" />
       </a>
 
       <nav class="header__nav" id="header-nav">
-        <a href="index.html#projects" class="header__nav-link">Projelerim</a>
-        <a href="index.html#about" class="header__nav-link">Hakkımda</a>
-        <a href="index.html#experience" class="header__nav-link">Deneyim</a>
+        <a href="anasayfa.html#projects" class="header__nav-link">Projelerim</a>
+        <a href="anasayfa.html#about" class="header__nav-link">Hakkımda</a>
+        <a href="anasayfa.html#experience" class="header__nav-link">Deneyim</a>
         ${Socials("header__nav-socials")}
       </nav>
 
@@ -28,7 +28,7 @@ export function Header() {
 export function DetailHeader(title) {
   return `
     <div class="container header__inner detail-header">
-      <a href="index.html?home" class="detail-header__back" aria-label="Anasayfaya dön">
+      <a href="anasayfa.html" class="detail-header__back" aria-label="Anasayfaya dön">
         <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true" focusable="false">
           <path d="M15 5l-7 7 7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
         </svg>

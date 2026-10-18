@@ -1,0 +1,68 @@
+/* ==========================================================
+   Opening page (index.html): only the opening film, full screen, on the
+   film's own paper colour. It is a page of its own, so nothing of the
+   home page exists behind it — iOS Safari's see-through bars can only
+   show this colour.
+   ========================================================== */
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #faf8f3;
+}
+
+.opening {
+  position: fixed;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  background: #faf8f3;
+  cursor: pointer;
+}
+
+/* Desktop / landscape: the film fills the screen */
+.opening__video {
+  display: block;
+  width: 100vw;
+  height: 100vh;
+  height: 100lvh;
+  max-width: none;
+  object-fit: cover;
+}
+
+/* Portrait (phones): full width, centred, so the cat and the room stay in
+   view (cropping to fill a tall screen would cut them away) */
+@media (max-aspect-ratio: 1/1) {
+  .opening__video {
+    width: 106.4vw;
+    height: auto;
+    aspect-ratio: 16 / 9;
+  }
+}
+
+/* The page fades to paper before the home page opens */
+.opening.is-leaving .opening__video {
+  opacity: 0;
+  transition: opacity 0.35s ease-in;
+}
+
+/* Small "Geç" (skip) link for people who don't want to wait */
+.opening__skip {
+  position: fixed;
+  right: max(20px, env(safe-area-inset-right, 0px));
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  padding: 8px 16px;
+  border: 1px solid rgba(51, 51, 48, 0.2);
+  border-radius: 999px;
+  background: rgba(250, 248, 243, 0.85);
+  font: 500 14px/20px "DM Sans", system-ui, sans-serif;
+  color: #333330;
+  text-decoration: none;
+}
+
+.opening__skip:focus-visible {
+  outline: 2px solid #2a3307;
+  outline-offset: 3px;
+}

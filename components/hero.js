@@ -76,7 +76,7 @@ export function Hero() {
   return `
     <div class="intro" data-intro>
       <div class="intro__frame">
-        <!-- 2. Landing scene (revealed after the film) -->
+        <!-- Landing scene -->
         <div class="landing" data-landing>
           <div class="landing__stage">
             <div class="container landing__text">
@@ -101,11 +101,6 @@ export function Hero() {
           </div>
         </div>
 
-        <!-- 1. Opening film (loading scene) -->
-        <div class="intro__room" data-room aria-hidden="true">
-          <video class="intro__video" data-video src="assets/video/opening.mp4"
-            muted playsinline preload="auto" disablepictureinpicture></video>
-        </div>
       </div>
     </div>
   `;

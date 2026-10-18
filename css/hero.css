@@ -35,8 +35,7 @@ body.home main > section {
   padding-block: 0;
 }
 
-/* The header floats over the page; js/intro.js fades it in when the
-   intro zoom lands on the landing scene */
+/* js/intro.js slides the header in during the landing entrance */
 /* Transparent over the hero; once the "Kullanıcı deneyimi…" line scrolls
    under it, the hero's background colour fades in, faint at first and
    filling as the page scrolls on (--header-fill 0 → 1, js/header-fill.js) */
@@ -53,28 +52,8 @@ body.home header {
   backdrop-filter: blur(calc(var(--header-fill) * 8px));
 }
 
-body.home.is-intro header {
-  visibility: hidden;
-  opacity: 0;
-}
-
-/* While the opening film plays nothing of the home page may show, even
-   where a browser's own bars float over the page (iOS Safari): the rest
-   of the page is hidden, so any uncovered strip shows only the page
-   colour (html background) */
-body.home.is-intro main > section:not(#hero),
-body.home.is-intro > footer {
-  display: none;
-}
-
-/* No scrolling while the loading scene plays */
-html.is-intro-lock,
-html.is-intro-lock body {
-  overflow: hidden;
-}
-
 /* ==========================================================
-   Intro: full-screen loading scene over the landing
+   Landing frame (the opening film is its own page: index.html)
    ========================================================== */
 .intro {
   position: relative;
@@ -82,58 +61,6 @@ html.is-intro-lock body {
 
 .intro__frame {
   position: relative;
-}
-
-/* ---------- 1. Opening film ---------- */
-.intro__room {
-  position: fixed;
-  /* Bleed well past every edge so the paper colour covers the whole
-     screen on any device: under iOS Safari's status bar and floating
-     toolbars, notches, rounded corners, overscroll bounce. The overlay
-     grows by the same amount above and below, so the film stays centred. */
-  left: -10vw;
-  right: -10vw;
-  top: -25vh;
-  bottom: auto;
-  height: calc(100vh + 50vh);
-  height: calc(100lvh + 50vh);
-  z-index: 200;
-  overflow: hidden;
-  background: #faf8f3;
-}
-
-/* Opening film fills the visible screen (its paper colour matches the
-   page); centred in the oversized overlay */
-.intro__video {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  display: block;
-  width: 100vw;
-  max-width: none;
-  height: 100vh;
-  height: 100lvh;
-  translate: -50% -50%;
-  object-fit: cover;
-}
-
-/* Portrait screens (phones): cropping a 16:9 film to fill a tall screen
-   would cut away the cat and the room. Instead the film runs full width,
-   centred both ways on the matching paper colour (the desk stays in the
-   middle, as in the film), enlarged just enough to trim the empty 3%
-   margins so the cat bed on the left still shows */
-@media (max-aspect-ratio: 1/1) {
-  .intro__video {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 106.4vw;
-    max-width: none; /* reset.css caps media at 100% */
-    height: auto;
-    aspect-ratio: 16 / 9;
-    translate: -50% -50%;
-    object-fit: cover;
-  }
 }
 
 /* Animated line-art parts (see tools/build-hero-art.py); transform-origin
@@ -733,9 +660,6 @@ html.is-intro-lock body {
    Static fallback (reduced motion, GSAP unavailable, deep link): no intro,
    the landing shows straight away
    ========================================================== */
-.intro--static .intro__room {
-  display: none;
-}
 
 .intro--static .hero__scribble path {
   stroke-dashoffset: 0;
