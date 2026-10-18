@@ -20,6 +20,14 @@
   <link rel="icon" type="image/png" sizes="64x64" href="assets/images/favicon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon-32.png" />
   <link rel="apple-touch-icon" href="assets/images/apple-touch-icon.png" />
+  <script>
+    // Yenileyince açılış animasyonu tekrar oynasın (detay sayfasından geri
+    // dönüşte ya da #bağlantıyla gelince değil)
+    (function () {
+      var nav = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+      if (nav && nav.type === "reload" && !location.hash) location.replace("./");
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Caveat:wght@500&family=Georama:wght@400&display=swap" rel="stylesheet" />

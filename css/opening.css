@@ -32,13 +32,20 @@ body {
   object-fit: cover;
 }
 
-/* Portrait (phones): full width, centred, so the cat and the room stay in
-   view (cropping to fill a tall screen would cut them away) */
+/* Portrait (phones): full width, so the cat and the room stay in view
+   (cropping to fill a tall screen would cut them away). The film is a bit
+   wider than the screen, and a grid item that overflows sits flush left, so
+   it is centred by hand — on the girl at the desk, who sits at 50.9% of the
+   frame (977px of 1920), not on the frame itself */
 @media (max-aspect-ratio: 1/1) {
   .opening__video {
+    position: absolute;
+    left: 50%;
+    top: 50%;
     width: 106.4vw;
     height: auto;
     aspect-ratio: 16 / 9;
+    transform: translate(-50.9%, -50%);
   }
 }
 
