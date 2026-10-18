@@ -14,10 +14,17 @@ body.home {
   --sticker-sage: #95b083;
 }
 
-/* Paper grain over the whole page */
+/* Paper grain over the whole page. Absolute over the document, not fixed
+   to the viewport: iOS 26 Safari tints the status bar from fixed elements
+   at the top edge, and a full-screen transparent fixed layer made it show
+   the page through the status bar instead of the header's colour */
+body.home {
+  position: relative;
+}
+
 body.home::after {
   content: "";
-  position: fixed;
+  position: absolute;
   inset: 0;
   z-index: 9999;
   pointer-events: none;
